@@ -1,0 +1,28 @@
+# 비밀 정보 — 절대 올리지 말 것
+.env
+CLAUDE.local.md
+*.key
+*.pem
+
+# 봇 런타임 파일 (상태·로그·백업·보고서·내려받은 시세)
+bot_v5_state.json
+bot_v5_state.json.tmp
+bot_v5_state.json.bak-*
+bot_v5_state.dry.json
+bot_v5_log.txt
+monthly_check.log
+backup_state.log
+backups/
+reports/
+data/
+
+# 파이썬 / 도구
+__pycache__/
+*.pyc
+venv/
+.venv/
+.pytest_cache/
+.ruff_cache/
+.coverage
+.idea/
+.vscode/

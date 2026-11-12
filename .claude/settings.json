@@ -1,0 +1,17 @@
+{
+  "hooks": {
+    "PreToolUse": [
+      {
+        "matcher": "Bash|PowerShell|Read|Edit|Write|MultiEdit|NotebookEdit|Grep",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "g=\"$CLAUDE_PROJECT_DIR/.claude/hooks/guard.py\"; [ -f \"$g\" ] || g=\".claude/hooks/guard.py\"; if [ -f \"$g\" ]; then python \"$g\"; fi; exit 0",
+            "timeout": 10,
+            "statusMessage": "upbit guard"
+          }
+        ]
+      }
+    ]
+  }
+}

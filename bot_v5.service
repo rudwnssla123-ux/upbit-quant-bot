@@ -1,0 +1,22 @@
+# systemd 서비스 파일 — 직접 수정할 필요 없음. deploy/setup_server.sh 가 경로·사용자를 맞춰 설치한다.
+# API 키 등 설정은 이 파일이 아니라 같은 폴더의 .env 에 넣는다.
+# 상태 확인: systemctl status bot_v5     로그: journalctl -u bot_v5 -f
+[Unit]
+Description=Upbit quant portfolio bot v5
+After=network-online.target
+Wants=network-online.target
+StartLimitIntervalSec=300
+StartLimitBurst=5
+
+[Service]
+User=ubuntu
+WorkingDirectory=/home/ubuntu/bot
+EnvironmentFile=/home/ubuntu/bot/.env
+Environment=TZ=Asia/Seoul
+Environment=PYTHONIOENCODING=utf-8
+ExecStart=/home/ubuntu/bot/venv/bin/python -u /home/ubuntu/bot/bot_v5.py
+Restart=always
+RestartSec=10
+
+[Install]
+WantedBy=multi-user.target

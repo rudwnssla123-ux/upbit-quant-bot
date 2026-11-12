@@ -1,0 +1,28 @@
+# 설정 파일 전용 (패키지로 설치하지 않는 스크립트 프로젝트). 구조는 gs-quant 의 pyproject 를 참고함.
+[tool.ruff]
+line-length = 120
+indent-width = 4
+target-version = "py310"
+extend-exclude = ["venv", ".venv"]
+
+[tool.ruff.format]
+quote-style = "preserve"
+
+[tool.ruff.lint]
+# 규칙을 명시적으로 고정해 ruff 버전이 바뀌어도 검사 범위가 같게 한다.
+select = ["E4", "E7", "E9", "F"]
+extend-select = [
+    "ICN",  # import 관례: import pandas as pd, import numpy as np, import datetime as dt
+    "NPY",  # numpy 구식 API 검사
+]
+
+[tool.ruff.lint.flake8-import-conventions]
+banned-from = ["pandas", "numpy", "datetime"]
+extend-aliases = { "datetime" = "dt" }
+
+[tool.pytest.ini_options]
+pythonpath = ["."]
+testpaths = ["tests"]
+
+[tool.coverage.run]
+omit = ["tests/*"]
